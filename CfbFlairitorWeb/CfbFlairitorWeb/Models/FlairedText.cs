@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CfbFlairitorWeb.Abstractions
+namespace CfbFlairitorWeb.Models
 {
-    public interface IService
+    public class FlairedText
     {
-		Task<IEnumerable<string>> GetValues();
+		public IList<Flair> Flairs
+		{
+			get;
+			set;
+		}
     }
 }

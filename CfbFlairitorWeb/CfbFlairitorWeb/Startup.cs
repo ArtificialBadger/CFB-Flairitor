@@ -8,12 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SimpleInjector;
-using CfbFlairitorWeb.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
+using CfbFlairitorWeb.Services.Abstractions;
+using CfbFlairitorWeb.Services.Concretes;
 
 namespace CfbFlairitorWeb
 {
@@ -84,8 +85,9 @@ namespace CfbFlairitorWeb
 			container.RegisterMvcControllers(app);
 			container.RegisterMvcViewComponents(app);
 
-			// Add application services. For instance:
-			container.Register<IService, ConcreteService>();
+			container.Register<IFlairResolver, StaticListFlairResolver>();
+			container.Register<IFlairFormatter, MarkdownFlairFormatter>();
+			container.Register<IFlairitor, SingleLetterReplacementFlairitor>();
 		}
 	}
 }
