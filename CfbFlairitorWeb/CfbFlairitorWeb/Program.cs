@@ -16,8 +16,8 @@ namespace CfbFlairitorWeb
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                //.UseApplicationInsights()
-                .Build();
+				.UseApplicationInsights()
+				.Build();
 
             host.Run();
         }

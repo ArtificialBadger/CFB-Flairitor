@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 namespace CfbFlairitorWeb.Controllers
 {
 	[Controller]
-	public class TestController
+	public class FlairController
 	{
 		private IFlairitor flairitor;
 		private IFlairFormatter formatter;
 
-		public TestController(IFlairitor flairitor, IFlairFormatter formatter)
+		public FlairController(IFlairitor flairitor, IFlairFormatter formatter)
 		{
 			this.flairitor = flairitor;
 			this.formatter = formatter;
@@ -24,11 +24,18 @@ namespace CfbFlairitorWeb.Controllers
 
 		[Route("flair/{text}")]
 		[HttpGet]
-		public Task<string> Test(string text)
+		public Task<string> Flairitize(string text)
 		{
 			return Task.FromResult(this.formatter.FormatFlairedString(this.flairitor.GenerateFlairText(text), new FlairFormatOptions(true)));
 		}
 
-		
+		[Route("flair")]
+		[HttpPost]
+		public Task<string> Flair(string text)
+		{
+			return Task.FromResult(this.formatter.FormatFlairedString(this.flairitor.GenerateFlairText(text), new FlairFormatOptions(true)));
+		}
+
+
 	}
 }

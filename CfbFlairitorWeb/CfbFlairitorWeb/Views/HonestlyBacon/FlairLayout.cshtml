@@ -1,0 +1,30 @@
+@model CfbFlairitorWeb.Models.FlairitorText
+
+@{
+    ViewData["Title"] = "FlairLayout";
+}
+
+<h2>r/CFB Flairitor</h2>
+<h4>u/ArtificialBadger</h4>
+<hr />
+
+<form asp-action="FlairLayout">
+	<div class="form-horizontal">
+		<div class="form-group">
+			<p>
+				ASP.NET Web Pages make it easy to build powerful .NET based applications for the web.
+				<br />
+				@Html.TextBoxFor(m => m.Text, new { @id="PlainTextBox",@onchange = "OnChangeEvent();" })
+
+				<br />
+				<input id="NewFlairsButton" type="button" value="New Flairs" />
+				<br />
+				@Html.TextAreaFor(m => m.FlairedText)
+			</p>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
